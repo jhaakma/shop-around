@@ -8,10 +8,10 @@ local LINKS_LIST = {
         text = messages.ReleaseHistory(),
         url = "https://github.com/jhaakma/shop-around/releases"
     },
-    -- {
-    --     text = "Nexus",
-    --     url = "https://www.nexusmods.com/morrowind/mods/52872"
-    -- },
+    {
+        text = "Nexus",
+        url = "https://www.nexusmods.com/morrowind/mods/55144"
+    },
     {
         text = messages.BuyMeACoffee(),
         url = "https://ko-fi.com/merlord"
