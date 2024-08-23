@@ -13,6 +13,6 @@ return {
     Settings = "Paramètres",
     EnableMod = "Activer le mod",
     EnableModDescription = "Active le mod.",
-    LogLevel = "Niveau de journalisation",
-    LogLevelDescription = "Définissez le niveau de journalisation pour tous les enregistreurs.",
+    LogLevel = "Niveau des logs.",
+    LogLevelDescription = "Définir le niveau des logs pour to us less enregistreurs.",
 }
