@@ -17,18 +17,8 @@ config.static = {
 local mcmDefault = {
     ---If true, the player can purchase an item by activating it directly
     enableDirectPurchase = true,
-    ---If true, the crosshair will be replaced with a different icon when sneaking and looking at an owned item
-    enableStealCrosshair = true,
     ---The log level for the mod. One of "TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"
     logLevel = "INFO",
-    ---The scale of the crosshair icon
-    crosshairScale = 1.0,
-    ---The scale of the ownership indicator icon
-    indicatorScale = 1.0,
-    ---If true, hide the crosshair after a short delay
-    autoHide = false,
-    --If true, uses the Oblivion-style ownership indicator texture
-    useTex = true,
 }
 
 ---@type ShopAround.Config.MCM

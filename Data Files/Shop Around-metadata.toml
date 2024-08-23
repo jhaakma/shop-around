@@ -1,0 +1,11 @@
+[package]
+name = "Shop Around"
+description = "Shop Around allows you to purchase items from stores by activating them directly."
+authors = [ "Merlord"]
+version = "0.0.1"
+
+[dependencies.mwse]
+buildnumber = 4079
+
+[dependencies.mge-xe]
+version = ">=0.16.0"

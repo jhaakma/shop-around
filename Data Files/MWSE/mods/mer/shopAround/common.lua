@@ -1,6 +1,29 @@
 ---@class ShopAround.Common
 local common = {}
 common.config = require("mer.shopAround.config")
+local i18n = mwse.loadTranslations("mer.shopAround")
+
+---@class ShopAround.i18n
+---@field PurchaseMessage fun(data):string
+---@field NotEnoughGold fun():string
+---@field TooltipMessage fun(data):string
+---@field ReleaseHistory fun():string
+---@field BuyMeACoffee fun():string
+---@field MadeBy fun():string
+---@field Links fun():string
+---@field Credits fun():string
+---@field Settings fun():string
+---@field EnableMod fun():string
+---@field EnableModDescription fun():string
+---@field LogLevel fun():string
+---@field LogLevelDescription fun():string
+common.messages = setmetatable({}, {
+    __index = function(_, key)
+        return function(data)
+            return i18n(key, data)
+        end
+    end,
+})
 local MWSELogger = require("logging.logger")
 
 ---@type table<string, mwseLogger>
@@ -26,26 +49,16 @@ end
 ---@param reference tes3reference #The reference to pick up
 ---@param playSound boolean Default: false
 function common.pickUp(reference, playSound)
-    local function stealActivateEvent(e)
-        event.unregister("activate", stealActivateEvent)
-        e.claim = true
-    end
-
-    local function blockSound()
-        event.unregister("addSound", blockSound)
-        return false
-    end
-
-    local safeRef = tes3.makeSafeObjectHandle(reference)
-    timer.delayOneFrame(function()
-        if safeRef and safeRef:valid() then
-            event.register("activate", stealActivateEvent, { priority = 1000000})
-            if not playSound then
-                event.register("addSound", blockSound, { priority = 1000000})
-            end
-            tes3.player:activate(safeRef:getObject())
-        end
-    end)
+    tes3.addItem{
+        reference = tes3.player,
+        item = reference.object,
+        itemData = reference.itemData,
+        count = reference.stackSize,
+        playSound = false,
+    }
+    reference.itemData = nil
+    reference:disable()
+    reference:delete()
 end
 
 ---Gets the NPC owner of mobile of a reference, if it has one
