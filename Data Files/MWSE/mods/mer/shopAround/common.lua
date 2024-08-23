@@ -3,20 +3,7 @@ local common = {}
 common.config = require("mer.shopAround.config")
 local i18n = mwse.loadTranslations("mer.shopAround")
 
----@class ShopAround.i18n
----@field PurchaseMessage fun(data):string
----@field NotEnoughGold fun():string
----@field TooltipMessage fun(data):string
----@field ReleaseHistory fun():string
----@field BuyMeACoffee fun():string
----@field MadeBy fun():string
----@field Links fun():string
----@field Credits fun():string
----@field Settings fun():string
----@field EnableMod fun():string
----@field EnableModDescription fun():string
----@field LogLevel fun():string
----@field LogLevelDescription fun():string
+---@type ShopAround.i18n
 common.messages = setmetatable({}, {
     __index = function(_, key)
         return function(data)
@@ -54,7 +41,7 @@ function common.pickUp(reference, playSound)
         item = reference.object,
         itemData = reference.itemData,
         count = reference.stackSize,
-        playSound = false,
+        playSound = playSound,
     }
     reference.itemData = nil
     reference:disable()

@@ -25,8 +25,8 @@ local CREDITS_LIST = {
 }
 
 local function addSideBar(component)
-    component.sidebar:createCategory(metadata.package.name)
-    component.sidebar:createInfo{ text = metadata.package.description}
+    component.sidebar:createCategory(messages.ModName())
+    component.sidebar:createInfo{ text = messages.ModDescription()}
 
     local linksCategory = component.sidebar:createCategory(messages.Links())
     for _, link in ipairs(LINKS_LIST) do
