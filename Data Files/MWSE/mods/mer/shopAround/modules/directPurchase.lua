@@ -56,10 +56,14 @@ local function canPurchase(target)
         logger:trace("Cannot purchase - Player is sneaking")
         return false
     end
+    if target.object.isGold then
+        logger:trace("Cannot purchase - Target is gold")
+        return false
+    end
     if tes3.hasOwnershipAccess{ target = target} then
         logger:trace("Cannot purchase - Player has ownership access")
         return false
-        end
+    end
     local owner = common.getOwner(target)
     if not owner then
         logger:trace("Cannot purchase - No owner")
