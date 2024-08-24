@@ -1,7 +1,7 @@
 ---@class ShopAround.i18n
----@field PurchaseMessage fun(data):string
+---@field PurchaseMessage fun(data:{itemName:string, price:number, merchantName:string}):string
 ---@field NotEnoughGold fun():string
----@field TooltipMessage fun(data):string
+---@field TooltipMessage fun(data:{price:number}):string
 ---@field ModName fun():string
 ---@field ModDescription fun():string
 ---@field ReleaseHistory fun():string
@@ -17,9 +17,9 @@
 --Translators: Do not include the above code in translation files
 
 return {
-    PurchaseMessage = "Purchase %s for %s gold?",
+    PurchaseMessage = "Purchase %{itemName} for %{price} gold?\nMerchant: %{merchantName}",
     NotEnoughGold = "You do not have enough gold to purchase this item.",
-    TooltipMessage = "Purchase (%s gold)",
+    TooltipMessage = "Purchase (%{price} gold)",
     --MCM
     ModName = "Shop Around",
     ModDescription = "This mod allows you to purchase items by activating them directly.\n"

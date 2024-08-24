@@ -12,11 +12,17 @@ local logger = common.createLogger("DirectPurchase")
 ---Open the dialog to purchase an item
 ---@param itemRef tes3reference
 ---@param owner tes3mobileNPC
+---@param price number
 local function openPurchaseMenu(itemRef, owner, price)
     logger:debug("Opening purchase menu for %s", itemRef.object.id)
     local itemName = itemRef.object.name
+    local ownerName = owner.object.name
     tes3ui.showMessageMenu{
-        message = messages.PurchaseMessage{itemName, price},
+        message = messages.PurchaseMessage{
+            itemName = itemName,
+            price = price,
+            merchantName = ownerName
+        },
         buttons = {
             {
                 text = tes3.findGMST(tes3.gmst.sYes).value,
@@ -120,7 +126,9 @@ event.register("uiObjectTooltip", function(e)
         merchant = owner
     }
 
-    local text = messages.TooltipMessage{price}
+    local text = messages.TooltipMessage{
+        price = price
+    }
     local label = e.tooltip:createLabel{
         text = text,
         id = tes3ui.registerID("mer.accidentalTheftProtection.purchase"),
