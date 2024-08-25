@@ -90,7 +90,6 @@ event.register("activate", function(e)
     local target = e.target
     if not canPurchase(target) then
         logger:debug("Cannot purchase %s", target.object.id)
-        tes3.playSound{ reference = tes3.player, sound = "Menu Click" }
         return
     end
     local owner = common.getOwner(target)
@@ -104,6 +103,7 @@ event.register("activate", function(e)
     --player has enough gold
     if tes3.getPlayerGold() < price then
         tes3.messageBox(messages.NotEnoughGold())
+        tes3.playSound{ reference = tes3.player, sound = "Menu Click" }
         return false
     end
     openPurchaseMenu(target, owner, price)
